@@ -40,7 +40,11 @@ jobs:
           ref: Simbrain3
           path: v3
       - name : Copy v3 docs
-        run: cp -r v3/docs site/Documentation/v3
+        run: |
+          # Documentation used to be published under both paths. Keep the
+          # legacy path so existing inbound links continue to resolve.
+          cp -r v3/docs site/Documentation/v3
+          cp -r v3/docs site/Documentation/docs
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
